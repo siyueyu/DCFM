@@ -40,6 +40,7 @@ The co-saliency maps of DCFM can be found at [preds](https://drive.google.com/fi
 
 ## Reproduction
 reproductions by myself on 2080Ti can be found at [reproduction1](https://drive.google.com/file/d/1vovii0RtYR_EC0Y2zxjY_cTWKWM3WaxP/view?usp=sharing) and [reproduction2](https://drive.google.com/file/d/1YPOKZ5kBtmZrCDhHpP3-w1GMVR5BfDoU/view?usp=sharing).
+
 reprodution by myself on TITAN X can be found at [reproduction3](https://drive.google.com/file/d/1bnGFtRTYkVXqI2dcjeWFRDXnqqbUUBJr/view?usp=sharing).
 
 ## Others
