@@ -5,16 +5,9 @@ The official repo of the paper `Democracy Does Matter: Comprehensive Feature Min
 create enviroment and intall as following:
 `pip install -r requirements.txt`
 
-## Trained model
-
-trained model can be downloaded from [papermodel](https://drive.google.com/file/d/1cfuq4eJoCwvFR9W1XOJX7Y0ttd8TGjlp/view?usp=sharing).
-
-Run `test.py` for inference.
-
-The evaluation tool please follow: https://github.com/zzhanghub/eval-co-sod
-
 ## Data Format
   trainset:CoCo-SEG
+  
   testset: CoCA, CoSOD3k, Cosal2015
   
   Put the [CoCo-SEG](https://drive.google.com/file/d/1GbA_WKvJm04Z1tR8pTSzBdYVQ75avg4f/view), [CoCA](http://zhaozhang.net/coca.html), [CoSOD3k](http://dpfan.net/CoSOD3K/) and [Cosal2015](https://drive.google.com/u/0/uc?id=1mmYpGx17t8WocdPcw2WKeuFpz6VHoZ6K&export=download) datasets to `DCFM/data` as the following structure:
@@ -29,8 +22,17 @@ The evaluation tool please follow: https://github.com/zzhanghub/eval-co-sod
            ├── CoCA (CoCA's image files)
            ├── CoSOD3k (CoSOD3k's image files)
            └── Cosal2015 (Cosal2015's image files)
-  ```  
+  ```
   
+## Trained model
+
+trained model can be downloaded from [papermodel](https://drive.google.com/file/d/1cfuq4eJoCwvFR9W1XOJX7Y0ttd8TGjlp/view?usp=sharing).
+
+Run `test.py` for inference.
+
+The evaluation tool please follow: https://github.com/zzhanghub/eval-co-sod
+
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 Download pretrainde backbone model [VGG](https://drive.google.com/file/d/1Z1aAYXMyJ6txQ1Z9N7gtxLOIai4dxrXd/view?usp=sharing).
