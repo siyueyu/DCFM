@@ -1,0 +1,11 @@
+matplotlib==3.4.1
+numpy==1.19.2
+opencv_python==4.5.1.48
+pandas==1.2.4
+Pillow==9.1.0
+pytorch_toolbelt==0.4.3
+scikit_image==0.18.1
+skimage==0.0
+torch==1.7.1
+torchvision==0.2.2
+tqdm==4.60.0
