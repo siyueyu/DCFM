@@ -1,6 +1,4 @@
 # DCFM
-<<<<<<< HEAD
-
 The official repo of the paper `Democracy Does Matter: Comprehensive Feature Mining for Co-Salient Object Detection`.
 
 ## Environment Requirement
