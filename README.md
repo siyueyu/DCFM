@@ -14,7 +14,9 @@ Run `test.py` for inference.
 The evaluation tool please follow: https://github.com/zzhanghub/eval-co-sod
 
 ## Data Format
-
+  trainset:CoCo-SEG
+  testset: CoCA, CoSOD3k, Cosal2015
+  
   Put the [CoCo-SEG](https://drive.google.com/file/d/1GbA_WKvJm04Z1tR8pTSzBdYVQ75avg4f/view), [CoCA](http://zhaozhang.net/coca.html), [CoSOD3k](http://dpfan.net/CoSOD3K/) and [Cosal2015](https://drive.google.com/u/0/uc?id=1mmYpGx17t8WocdPcw2WKeuFpz6VHoZ6K&export=download) datasets to `DCFM/data` as the following structure:
   ```
   DCFM
