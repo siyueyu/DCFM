@@ -6,7 +6,7 @@ create enviroment and intall as following:
 `pip install -r requirements.txt`
 
 ## Data Format
-  trainset:CoCo-SEG
+  trainset: CoCo-SEG
   
   testset: CoCA, CoSOD3k, Cosal2015
   
