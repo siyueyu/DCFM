@@ -49,3 +49,4 @@ reprodution by myself on TITAN X can be found at [reproduction3](https://drive.g
 
 ## Others
 The code is based on [GCoNet](https://github.com/fanq15/GCoNet).
+I've added a validation part to help select the model for closer results. This validation part is based on [GCoNet_plus](https://github.com/ZhengPeng7/GCoNet_plus). You can try different evaluation metrics to select the model.

@@ -82,9 +82,9 @@ class half_DSLayer(nn.Module):
         return x
 
 
-class DFE(nn.Module):
+class AugAttentionModule(nn.Module):
     def __init__(self, input_channels=512):
-        super(DFE, self).__init__()
+        super(AugAttentionModule, self).__init__()
         self.query_transform = nn.Sequential(
             nn.Conv2d(input_channels, input_channels, kernel_size=1, stride=1, padding=0),
             nn.Conv2d(input_channels, input_channels, kernel_size=1, stride=1, padding=0),
@@ -129,9 +129,9 @@ class DFE(nn.Module):
         return out+x
 
 
-class DPG(nn.Module):
+class AttLayer(nn.Module):
     def __init__(self, input_channels=512):
-        super(DPG, self).__init__()
+        super(AttLayer, self).__init__()
         self.query_transform = nn.Conv2d(input_channels, input_channels, kernel_size=1, stride=1, padding=0)
         self.key_transform = nn.Conv2d(input_channels, input_channels, kernel_size=1, stride=1, padding=0)
         self.scale = 1.0 / (input_channels ** 0.5)
@@ -154,7 +154,7 @@ class DPG(nn.Module):
         # x: B,C,H,W
         x5 = self.conv(x5)+x5
         B, C, H5, W5 = x5.size()
-        x_query = self.query_transform(x5).view(B, C, -1)###SSB
+        x_query = self.query_transform(x5).view(B, C, -1)
         # x_query: B,HW,C
         x_query = torch.transpose(x_query, 1, 2).contiguous().view(-1, C)  # BHW, C
         # x_key: B,C,HW
@@ -178,7 +178,7 @@ class DPG(nn.Module):
         x_w_max = torch.max(x_w, -1).values.unsqueeze(2).expand_as(x_w)
         mask = torch.zeros_like(x_w).cuda()
         mask[x_w == x_w_max] = 1
-        mask = mask.view(B, 1, H5, W5) ###DRB
+        mask = mask.view(B, 1, H5, W5)
         seeds = norm0 * mask
         seeds = seeds.sum(3).sum(2).unsqueeze(2).unsqueeze(3)
         cormap = self.correlation(norm0, seeds)
@@ -252,15 +252,15 @@ class Decoder(nn.Module):
 
 
 class DCFMNet(nn.Module):
-    """ Class for extracting activations and 
+    """ Class for extracting activations and
     registering gradients from targetted intermediate layers """
     def __init__(self, mode='train'):
         super(DCFMNet, self).__init__()
         self.gradients = None
         self.backbone = VGG_Backbone()
         self.mode = mode
-        self.aug = DFE()
-        self.fusion = DPG(512)
+        self.aug = AugAttentionModule()
+        self.fusion = AttLayer(512)
         self.decoder = Decoder()
 
     def set_mode(self, mode):
@@ -294,7 +294,7 @@ class DCFMNet(nn.Module):
             feat_pos, proto_pos, weighted_x5_pos, cormap_pos = self.fusion(x5 * gt)
             feat_neg, proto_neg, weighted_x5_neg, cormap_neg = self.fusion(x5*(1-gt))
             return preds, proto, proto_pos, proto_neg
-        return preds, cormap
+        return preds
 
 
 class DCFM(nn.Module):

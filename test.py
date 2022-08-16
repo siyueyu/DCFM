@@ -20,7 +20,7 @@ def main(args):
     model = DCFM()
     model = model.to(device)
     try:
-        modelname = os.path.join(args.param_root, 'model-196.pt')
+        modelname = os.path.join(args.param_root, 'best_ep198_Smeasure0.7019.pth')
         dcfmnet_dict = torch.load(modelname)
         print('loaded', modelname)
     except:
@@ -32,7 +32,7 @@ def main(args):
     model.set_mode('test')
 
     tensor2pil = transforms.ToPILImage()
-    for testset in ['CoCA','CoSOD3k','CoSal2015']:
+    for testset in ['CoCA']:
         if testset == 'CoCA':
             test_img_path = './data/images/CoCA/'
             test_gt_path = './data/gts/CoCA/'
@@ -57,7 +57,7 @@ def main(args):
             gts = batch[1].to(device).squeeze(0)
             subpaths = batch[2]
             ori_sizes = batch[3]
-            scaled_preds, cormap= model(inputs, gts)
+            scaled_preds= model(inputs, gts)
             scaled_preds = torch.sigmoid(scaled_preds[-1])
             os.makedirs(os.path.join(saved_root, subpaths[0][0].split('/')[0]), exist_ok=True)
             num = gts.shape[0]
@@ -75,7 +75,7 @@ if __name__ == '__main__':
                         default=224,
                         type=int,
                         help='input size')
-    parser.add_argument('--param_root', default='./papermodel', type=str, help='model folder')
+    parser.add_argument('--param_root', default='/data1/dcfm/temp', type=str, help='model folder')
     parser.add_argument('--save_root', default='./CoSODmaps/pred', type=str, help='Output folder')
 
     args = parser.parse_args()
